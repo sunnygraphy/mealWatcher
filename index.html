@@ -1,0 +1,41 @@
+<html>
+<head>
+<meta charset="utf-8">
+<script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+<script src="mymapkey.js?a=5"></script>
+<script>
+ 
+ 
+</script>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+</head>
+<body>
+    
+
+<h1>HybridWebView Test</h1>
+<br/>
+Enter name: <input type="text" id="name">
+<br/>
+<br/>
+<button type="button" onclick="javascript:invokeCSCode($('#name').val());">Invoke C# Code</button>
+<br/>
+<p id="result">Result:</p>
+<script type="text/javascript">
+function log(str)
+{
+	$('#result').text($('#result').text() + " " + str);
+}
+
+
+
+$(document).ready(function(){
+
+  writeUserData("1","1","1","1","1","1"); //이코드가 있어야 작동한다 ?
+  // jQuery methods go here...
+  setTimeout(myFunction, 1500);
+  
+
+});
+</script>
+</body>
+</html>
