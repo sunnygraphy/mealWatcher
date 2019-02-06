@@ -1,0 +1,85 @@
+<html>
+<head>
+<meta charset="utf-8">
+<script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBmr2FUtd7SsrSH8L7gosjxPvkZ2WhtXyc",
+    authDomain: "evaluate-list01.firebaseapp.com",
+    databaseURL: "https://evaluate-list01.firebaseio.com",
+    projectId: "evaluate-list01",
+    storageBucket: "evaluate-list01.appspot.com",
+    messagingSenderId: "760322409283"
+  };
+  firebase.initializeApp(config);
+</script>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+</head>
+<body>
+    
+
+<h1>HybridWebView Test</h1>
+<br/>
+Enter name: <input type="text" id="name">
+<br/>
+<br/>
+<button type="button" onclick="javascript:invokeCSCode($('#name').val());">Invoke C# Code</button>
+<br/>
+<p id="result">Result:</p>
+<script type="text/javascript">
+function log(str)
+{
+	$('#result').text($('#result').text() + " " + str);
+}
+
+
+function writeUserData(evaluator, ownerId, mealKey, name, val, comment) {
+  firebase.database().ref(evaluator).child(mealKey).set({
+    ownerId: ownerId,
+    mealId: mealKey,
+    ownerName: name,
+    val : val,
+    comment:comment
+  });
+}
+// set_evaluate_other('" + meal.ownerId + "','" + meal.key +"','"+ownerName+"','"+eval.ToString()+"');");
+function set_evaluate_other(evaluator,ownerId, mealKey, name, val,comment)
+{
+	//log(evaluation_data);
+	
+	//writeUserData("alicelee", "honey", "aliceleesunny@gmail.com", "'" + evaluation_data+"'");
+	writeUserData(evaluator,ownerId, mealKey, name, val,comment);
+ 
+}
+function get_evaluate_list()
+{
+	log("wow2");
+ //alert("wow");
+}
+function invokeCSCode(data) {
+	try {
+	    log("Sending Data:" + data);
+	    invokeCSharpAction(data);
+	}
+	catch (err){
+	  	log(err);
+	}
+}
+
+function myFunction()
+{
+	invokeCSCode("ready");
+}
+
+$(document).ready(function(){
+
+  writeUserData("1","1","1","1","1","1"); //이코드가 있어야 작동한다 ?
+  // jQuery methods go here...
+  setTimeout(myFunction, 1500);
+  
+
+});
+</script>
+</body>
+</html>
