@@ -39,14 +39,15 @@ $(document).ready(function(){
 
 function convert_data()
 {
-    var tmp_data = "temporary1:";
+    var tmp_data = "temporary:";
  	firebase.database().ref("temp").once("value", function(snapshot){
 		cnt = snapshot.numChildren();
 		snapshot.forEach(function(child){
 			tmp_data = tmp_data + child.key +":";
 	
+
+		});
 		invokeCSCode( tmp_data);		
-	});
 		
 		
 		
