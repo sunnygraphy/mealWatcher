@@ -55,6 +55,26 @@ function convert_data()
  
 }
 
+function convert_data2(each_member_key)
+{
+    var tmp_data = "temporary2:";
+ 	firebase.database().ref("temp").child(each_member_key).once("value", function(snapshot){
+		cnt = snapshot.numChildren();
+		snapshot.forEach(function(child){
+		    var friend = child.val().ownerId;
+			tmp_data = tmp_data + child.key + "|" + friend +":";
+			
+	
+
+		});
+		invokeCSCode( tmp_data);		
+		
+		
+		
+	});
+ 
+}
+
 </script>
 </body>
 </html>
