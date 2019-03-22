@@ -75,6 +75,16 @@ function convert_data2(each_member_key)
  
 }
 
+function convert_data3(member_key, friend_key, dstring)
+{
+    
+ 	firebase.database().ref('/evaluated_days').child(member_key).child(friend_key).child(dstring).set({
+		serial:1
+		
+	});
+ 
+}
+
 </script>
 </body>
 </html>
