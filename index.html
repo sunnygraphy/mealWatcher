@@ -37,32 +37,15 @@ $(document).ready(function(){
 
 });
 
-function convert_data()
+
+function get_eval_dates(member_key, friend_key)
 {
-    var tmp_data = "temporary:";
- 	firebase.database().ref("temp").once("value", function(snapshot){
+    var tmp_data = "evaluated_days:";
+ 	firebase.database().ref("evaluated_days").child(member_key).child(friend_key).once("value", function(snapshot){
 		cnt = snapshot.numChildren();
 		snapshot.forEach(function(child){
-			tmp_data = tmp_data + child.key +":";
-	
-
-		});
-		invokeCSCode( tmp_data);		
-		
-		
-		
-	});
- 
-}
-
-function convert_data2(each_member_key)
-{
-    var tmp_data = "temporary2:";
- 	firebase.database().ref("temp").child(each_member_key).once("value", function(snapshot){
-		cnt = snapshot.numChildren();
-		snapshot.forEach(function(child){
-		    var friend = child.val().ownerId;
-			tmp_data = tmp_data + child.key + "|" + friend +":";
+		    
+			tmp_data = tmp_data + child.key + ":";
 			
 	
 
@@ -70,16 +53,6 @@ function convert_data2(each_member_key)
 		invokeCSCode( tmp_data);		
 		
 		
-		
-	});
- 
-}
-
-function convert_data3(member_key, friend_key, dstring)
-{
-    
- 	firebase.database().ref('/evaluated_days').child(member_key).child(friend_key).child(dstring).set({
-		serial:1
 		
 	});
  
