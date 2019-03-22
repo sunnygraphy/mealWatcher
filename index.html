@@ -43,10 +43,11 @@ function convert_data()
  firebase.database().ref("temp").once("value", function(snapshot){
 		cnt = snapshot.numChildren();
 		snapshot.forEach(function(child){
-			console.log(child);
+			
+			invokeCSCode("temporary:" + child.key);
 		});
 		
-		invokeCSCode("mealDatesList:" + mealdatesList);
+		
 		
 	});
  
