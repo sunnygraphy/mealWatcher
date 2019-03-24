@@ -69,7 +69,7 @@ function get_meals_a_day_for_allMembers(memberKey, skey, ekey)
 		firebase.database().ref(memberKey).orderByKey().startAt(skey).endAt(ekey).once("value", function(snapshot){
 			cnt = snapshot.numChildren();
 			snapshot.forEach(function(child){
-				mealList = mealList + child.key + String.fromCharCode(8)+child.val().fileId +"." + String.fromCharCode(8)+child.val().comment +"." + String.fromCharCode(8)+child.val().ownerName +":";
+				mealList = mealList + child.key + String.fromCharCode(8)+child.val().fileId  + String.fromCharCode(8)+child.val().comment +"." + String.fromCharCode(8)+child.val().ownerName +":";
 			});
 		
 			invokeCSCode("get_meals_a_day_for_allMembers:" + mealList);
