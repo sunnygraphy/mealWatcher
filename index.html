@@ -63,16 +63,25 @@ function get_eval_dates(member_key, friend_key)
 function get_meals_a_day_for_allMembers(memberKey, skey, ekey)
 {
     mealList = "";
-			
-	firebase.database().ref(memberKey).orderByKey().startAt(skey).endAt(ekey).once("value", function(snapshot){
-		cnt = snapshot.numChildren();
-		snapshot.forEach(function(child){
-			mealList = mealList + child.key + String.fromCharCode(8)+child.val().comment + String.fromCharCode(8)+child.val().ownerName +":";
+	
+	try
+	{
+		firebase.database().ref(memberKey).orderByKey().startAt(skey).endAt(ekey).once("value", function(snapshot){
+			cnt = snapshot.numChildren();
+			snapshot.forEach(function(child){
+				mealList = mealList + child.key + String.fromCharCode(8)+child.val().comment + String.fromCharCode(8)+child.val().ownerName +":";
+			});
+		
+			invokeCSCode("get_meals_a_day_for_allMembers:" + mealList);
+		
 		});
-		
-		invokeCSCode("get_meals_a_day_for_allMembers:" + mealList);
-		
-	});
+	}
+	catch(err)
+	{
+	  invokeCSCode("get_meals_a_day_for_allMembers:" + err);
+	}
+			
+	
 
     
   
