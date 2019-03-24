@@ -107,6 +107,13 @@ function get_all_meal_list(memberKey)
   
 }
 
+function update_fileId(member_key, mealId,fileId)
+{
+    
+ 	firebase.database().ref(member_key).child(mealId).set({fileId:fileId});
+ 
+}
+
 </script>
 </body>
 </html>
