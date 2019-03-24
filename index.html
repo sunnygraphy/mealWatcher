@@ -110,7 +110,7 @@ function get_all_meal_list(memberKey)
 function update_fileId(member_key, mealId,fileId)
 {
     
- 	firebase.database().ref(member_key).child(mealId).child("fileId").set({fileId});
+ 	firebase.database().ref(member_key).child(mealId).child("fileId").set(fileId);
  
 }
 
