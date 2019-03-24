@@ -25,19 +25,12 @@ function log(str)
 {
 	$('#result').text($('#result').text() + " " + str);
 }
-
-
-
 $(document).ready(function(){
-
-  writeUserData("1","1","1","1","1","1","1","1"); //이코드가 있어야 작동한다 ?
+  writeUserData("1","1","1","1","1","1","1"); //이코드가 있어야 작동한다 ?
   // jQuery methods go here...
   setTimeout(myFunction, 1500);
   
-
 });
-
-
 function get_eval_dates(member_key, friend_key)
 {
     var tmp_data = "evaluated_days:";
@@ -48,7 +41,6 @@ function get_eval_dates(member_key, friend_key)
 			tmp_data = tmp_data + child.key + ":";
 			
 	
-
 		});
 		invokeCSCode( tmp_data);		
 		
@@ -57,65 +49,6 @@ function get_eval_dates(member_key, friend_key)
 	});
  
 }
-
-
-//8은 애스키코드 bs
-function get_meals_a_day_for_allMembers(memberKey, skey, ekey)
-{
-    mealList = "";
-	
-	try
-	{
-		firebase.database().ref(memberKey).orderByKey().startAt(skey).endAt(ekey).once("value", function(snapshot){
-			cnt = snapshot.numChildren();
-			snapshot.forEach(function(child){
-				mealList = mealList + child.key + String.fromCharCode(8)+child.val().fileId  + String.fromCharCode(8)+child.val().comment +"." + String.fromCharCode(8)+child.val().ownerName +":";
-			});
-		
-			invokeCSCode("get_meals_a_day_for_allMembers:" + mealList);
-		
-		});
-	}
-	catch(err)
-	{
-	  invokeCSCode("get_meals_a_day_for_allMembers:" + err);
-	}
-			
-	
-
-    
-  
-}
-
-
-function get_all_meal_list(memberKey)
-{
-    mealList = "";
-			
-	firebase.database().ref(memberKey).once("value", function(snapshot){
-		cnt = snapshot.numChildren();
-		snapshot.forEach(function(child){
-			var friend = child.val().ownerId;
-			mealList = mealList + child.key +String.fromCharCode(8) + friend +":";
-		});
-		
-		invokeCSCode("get_all_meal_list:" + mealList);
-		
-	});
-
-    
-  
-}
-
-function update_fileId(member_key, mealId,fileId)
-{
-    
- 	firebase.database().ref(member_key).child(mealId).child("fileId").set(fileId);
- 
-}
-
-
-
 </script>
 </body>
 </html>
