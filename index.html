@@ -58,6 +58,26 @@ function get_eval_dates(member_key, friend_key)
  
 }
 
+
+
+function get_meals_a_day_for_allMembers(memberKey, skey, ekey)
+{
+    mealList = "";
+			
+	firebase.database().ref(memberKey).orderByKey().startAt(skey).endAt(ekey).once("value", function(snapshot){
+		cnt = snapshot.numChildren();
+		snapshot.forEach(function(child){
+			mealList = mealList + child.key +":";
+		});
+		
+		invokeCSCode("get_meals_a_day_for_allMembers:" + mealList);
+		
+	});
+
+    
+  
+}
+
 </script>
 </body>
 </html>
