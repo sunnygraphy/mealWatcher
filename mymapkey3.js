@@ -1,4 +1,13 @@
-﻿  
+﻿var config = {
+    apiKey: "AIzaSyBmr2FUtd7SsrSH8L7gosjxPvkZ2WhtXyc",
+    authDomain: "evaluate-list01.firebaseapp.com",
+    databaseURL: "https://evaluate-list01.firebaseio.com",
+    projectId: "evaluate-list01",
+    storageBucket: "evaluate-list01.appspot.com",
+    messagingSenderId: "760322409283"
+  };
+  firebase.initializeApp(config);
+  
 function formatDate(date) {
     var d = new Date(date),
         month = '' + (d.getMonth() + 1),
